@@ -11,6 +11,9 @@ Supported functionality:
 - [ ] Encode in memory
 - [ ] Write to file  
 
+#### Keeping up to date
+
+When SPM updates a package it _should_ automatically update submodules with it. You'll only need to update your Swift packages to get the latest `qoi`. 
 
 ## Usage
 
