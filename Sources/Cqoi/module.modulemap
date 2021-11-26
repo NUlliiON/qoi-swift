@@ -1,0 +1,6 @@
+
+module Cqoi [system] {
+    header "Cqoi-Bridging-Header.h"
+    link "qoi"
+    export *
+}

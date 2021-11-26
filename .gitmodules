@@ -1,0 +1,4 @@
+[submodule "qoi"]
+	path = qoi
+	url = git@github.com:phoboslab/qoi.git
+	branch = master
