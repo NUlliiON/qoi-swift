@@ -22,14 +22,15 @@ extension QOI {
         }
 
         let filename = url.path
-        var desc = QOI.Descriptor()
         
-        let pixels = QOI.read(filename: filename, desc: &desc, channels: 4)
+        let image = QOI.read(filename: filename)
 
-        let byesPerRow = Int(desc.width * 4)
-        let size = CGSize(width: Int(desc.width), height: Int(desc.width))
+        
+        
+        let byesPerRow = Int(image.width * 4)
+        let size = CGSize(width: image.width, height: image.height)
 
-        let ci = CIImage(bitmapData: pixels,
+        let ci = CIImage(bitmapData: image.pixels,
                          bytesPerRow: byesPerRow,
                          size: size,
                          format: .RGBA8,
