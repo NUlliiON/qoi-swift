@@ -2,29 +2,7 @@ import Foundation
 import Cqoi
 
 struct CqoiCoder: Coder {
-    
-    func read(filename: String) -> QOI.Image {
-        let file = filename.cString(using: .utf8)
-        let channels = 4
-        
-        var descriptor: Cqoi.qoi_desc = Cqoi.qoi_desc(width: 0,
-                                                      height: 0,
-                                                      channels: 4,
-                                                      colorspace: 0)
-        
-        guard let pixels = Cqoi.qoi_read(file, &descriptor, Int32(channels)) else {
-            return QOI.Image()
-        }
 
-        
-        let count = Int(descriptor.width) * Int(descriptor.height) * (channels + 1) + Int(Cqoi.QOI_HEADER_SIZE) + Int(Cqoi.QOI_PADDING)
-        
-        let data = Data(bytes: pixels, count: count)
-
-        return image(descriptor: descriptor, pixels: data)
-    }
-    
-    
     func read(url: URL) -> QOI.Image {
         do {
             let data = try Data(contentsOf: url)
@@ -52,7 +30,6 @@ struct CqoiCoder: Coder {
         }
 
         let count = Int(descriptor.width) * Int(descriptor.height) * (channels + 1) + Int(Cqoi.QOI_HEADER_SIZE) + Int(Cqoi.QOI_PADDING)
-        
         let decodedData = Data(bytes: pixels, count: count)
         
         return image(descriptor: descriptor, pixels: decodedData)

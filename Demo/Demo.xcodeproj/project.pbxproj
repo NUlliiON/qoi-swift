@@ -13,6 +13,8 @@
 		83E2827A2756F46C00909C09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83E282782756F46C00909C09 /* Main.storyboard */; };
 		83E2827C2756F46D00909C09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83E2827B2756F46D00909C09 /* Assets.xcassets */; };
 		83E2827F2756F46D00909C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83E2827D2756F46D00909C09 /* LaunchScreen.storyboard */; };
+		83E282882756F5D100909C09 /* testcard_rgba.qoi in Resources */ = {isa = PBXBuildFile; fileRef = 83E282872756F5D100909C09 /* testcard_rgba.qoi */; };
+		83E2828D2756F69900909C09 /* QOI in Frameworks */ = {isa = PBXBuildFile; productRef = 83E2828C2756F69900909C09 /* QOI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		83E2827B2756F46D00909C09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83E2827E2756F46D00909C09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83E282802756F46D00909C09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83E282872756F5D100909C09 /* testcard_rgba.qoi */ = {isa = PBXFileReference; lastKnownFileType = file; path = testcard_rgba.qoi; sourceTree = "<group>"; };
+		83E2828A2756F65000909C09 /* qoi-swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "qoi-swift"; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83E2828D2756F69900909C09 /* QOI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,8 +45,10 @@
 		83E282662756F46C00909C09 = {
 			isa = PBXGroup;
 			children = (
+				83E282892756F65000909C09 /* Packages */,
 				83E282712756F46C00909C09 /* Demo */,
 				83E282702756F46C00909C09 /* Products */,
+				83E2828B2756F69900909C09 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,8 +78,24 @@
 		83E282862756F50D00909C09 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				83E282872756F5D100909C09 /* testcard_rgba.qoi */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		83E282892756F65000909C09 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				83E2828A2756F65000909C09 /* qoi-swift */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		83E2828B2756F69900909C09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +114,9 @@
 			dependencies = (
 			);
 			name = Demo;
+			packageProductDependencies = (
+				83E2828C2756F69900909C09 /* QOI */,
+			);
 			productName = Demo;
 			productReference = 83E2826F2756F46C00909C09 /* Demo.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83E2827F2756F46D00909C09 /* LaunchScreen.storyboard in Resources */,
+				83E282882756F5D100909C09 /* testcard_rgba.qoi in Resources */,
 				83E2827C2756F46D00909C09 /* Assets.xcassets in Resources */,
 				83E2827A2756F46C00909C09 /* Main.storyboard in Resources */,
 			);
@@ -368,6 +395,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		83E2828C2756F69900909C09 /* QOI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QOI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83E282672756F46C00909C09 /* Project object */;
 }

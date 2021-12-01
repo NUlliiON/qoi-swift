@@ -2,10 +2,10 @@ import Foundation
 import CoreImage
 
 public protocol Coder {
-    func read(filename: String) -> QOI.Image
     func read(url: URL) -> QOI.Image
     func decode(data: Data) -> QOI.Image
 }
+
 
 public struct QOI {
 
@@ -17,23 +17,39 @@ public struct QOI {
         
     
     public struct Image {
-        var header: Header = Header()
-        var pixels: Data = Data()
+        public var header: Header = Header()
+        public var pixels: Data = Data()
+        
+        public var ciImage: CIImage {
+            let byesPerRow = Int(header.width * 4)
+            let size = CGSize(width: header.width, height: header.height)
+
+            let ci = CIImage(bitmapData: pixels,
+                             bytesPerRow: byesPerRow,
+                             size: size,
+                             format: .RGBA8,
+                             colorSpace: CGColorSpaceCreateDeviceRGB())
+            return ci
+        }
     }
 
+    
     public struct Header {
         var width: Int = 0
         var height: Int = 0
         var channels: Int = 4
         var colorspace: Int = 0
     }
-    
+}
+
+extension QOI {
     /**
      You probably want `read(url:)` instead.
      */
     public static func read(filename: String) -> Image {
         return coder.read(filename: filename)
     }
+    
     
     /**
      Reads a QOI file at the specified file URL and converts it into a CIImage for display.
@@ -54,16 +70,24 @@ public struct QOI {
         }
 
         let image = coder.read(url: url)
-
-        let byesPerRow = Int(image.header.width * 4)
-        let size = CGSize(width: image.header.width, height: image.header.height)
-
-        let ci = CIImage(bitmapData: image.pixels,
-                         bytesPerRow: byesPerRow,
-                         size: size,
-                         format: .RGBA8,
-                         colorSpace: CGColorSpaceCreateDeviceRGB())
-
-        return ci
+        return image.ciImage
     }
+    
+    
+    /**
+     Decodes a QOI file that has been read into memory.
+     
+     Example usage:
+     ```
+     let qoiImage = QOI.decode(data: qoiPixels)
+     let image = qoiImage.ciImage // convert to CIImage for use
+     ```
+
+        - parameters:
+            - data: A QOI encoded file loaded into memory
+     */
+    public static func decode(data: Data) -> QOI.Image {
+        return coder.decode(data: data)
+    }
+    
 }
